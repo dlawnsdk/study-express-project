@@ -6,7 +6,9 @@ var logger = require('morgan');
 
 // 컨트롤러(routs) 변수에 담기
 var indexRouter = require('./routes/index');
+// 유저 관리
 var usersRouter = require('./routes/users');
+// 자유세기판
 var boardRouter = require('./routes/board');
 
 var app = express();
@@ -24,7 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // URL 요청 받으면 컨트롤러 요청
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/board', boardRouter);
+// 게시판
+app.get('/board', boardRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -43,3 +46,4 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+

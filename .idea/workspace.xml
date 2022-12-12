@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf669ef4-2c6f-4ddf-bbb5-0b124fd6436d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/javascripts/layout.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/board.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/board.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/board.hbs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/views/layout.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/layout.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,6 +47,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;18.12.1&quot;,
     &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;18.11.11&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/imjuna/IdeaProjects/expressProject/views/board&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -52,7 +57,11 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\imjuna\IdeaProjects\expressProject\views\board" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\imjuna\IdeaProjects\expressProject\views\board" />
       <recent name="C:\Users\imjuna\IdeaProjects\expressProject\routes\test" />
     </key>
   </component>
@@ -84,7 +93,11 @@
       <updated>1670417490651</updated>
       <workItem from="1670417491864" duration="6643000" />
       <workItem from="1670496467415" duration="240000" />
-      <workItem from="1670496726131" duration="3421000" />
+      <workItem from="1670496726131" duration="3521000" />
+      <workItem from="1670635196792" duration="10000" />
+      <workItem from="1670647634388" duration="1478000" />
+      <workItem from="1670837701458" duration="1134000" />
+      <workItem from="1670838858259" duration="5747000" />
     </task>
     <servers />
   </component>
