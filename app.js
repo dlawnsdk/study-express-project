@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+
+
 // 컨트롤러(routs) 변수에 담기
 var indexRouter = require('./routes/index');
 // 유저 관리
@@ -28,6 +30,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 // 게시판
 app.get('/board', boardRouter);
+app.get('/board/edit', boardRouter);
+app.post('/board/save', boardRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
