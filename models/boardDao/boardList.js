@@ -1,12 +1,14 @@
 var express = require('express');
-
-/**
- * db connection
 const connection = require('../../lib/dataBase')
 
-exports.boardList = connection.query(
-    "SELECT ID, NAME FROM USER"
-).then((result) => {
-    console.log(result[0])
-})*/
+exports.list = (req, res) => {
+    connection.query(
+        "SELECT IDX, TITLE, CONTENTS FROM BOARD"
+    ).then((result) => {
+        return result
+    })
+}
+
+
+
 

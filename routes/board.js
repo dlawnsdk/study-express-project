@@ -1,16 +1,11 @@
 var express = require('express');
 var router = express.Router();
-const db = require('../models/boardDao/boardList')
+const dao = require('../models/boardDao/boardList')
 const connection = require('../lib/dataBase')
 
 // app.get으로 요청하는 경우 URL 적시 <-> app.use인 경우 / 만 적시
-router.get('/board', function(req, res, next) {
-
-    connection.query(
-        "SELECT IDX, TITLE, CONTENTS FROM BOARD"
-    ).then((result) => {
-        res.render('board/list', { list: result[0] })
-    })
+router.get('/board', function(req, res) {
+    res.render('board/list', { list: dao.list() })
 });
 
 router.get('/board/edit', function(req, res, next) {
