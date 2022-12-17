@@ -18,6 +18,10 @@ $( document ).ready(function() {
     function board(){
         location.href = "/board"
     }
+
+    var login = () => {
+        location.href = "login"
+    }
 </script>
 <!DOCTYPE html>
 <html>
@@ -47,7 +51,7 @@ $( document ).ready(function() {
             </form>
 
             <div class="text-end">
-                <button type="button" class="btn btn-outline-light me-2">Login</button>
+                <button onclick="login()" type="button" class="btn btn-outline-light me-2">Login</button>
                 <button type="button" class="btn btn-warning">Sign-up</button>
             </div>
         </div>

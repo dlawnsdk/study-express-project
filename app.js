@@ -27,7 +27,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // URL 요청 받으면 컨트롤러 요청
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// 유저
+app.get('/login', usersRouter);
+app.post('/login/try', usersRouter);
 // 게시판
 app.get('/board', boardRouter);
 app.get('/board/edit', boardRouter);
