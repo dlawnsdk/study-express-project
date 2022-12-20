@@ -51,8 +51,14 @@ $( document ).ready(function() {
             </form>
 
             <div class="text-end">
-                <button onclick="login()" type="button" class="btn btn-outline-light me-2">Login</button>
-                <button type="button" class="btn btn-warning">Sign-up</button>
+                {{#if loginInfo}}
+                    ?
+                    {{loginInfo}}
+                {{else}}
+                    !
+                    <button onclick="login()" type="button" class="btn btn-outline-light me-2">Login</button>
+                    <button type="button" class="btn btn-warning">Sign-up</button>
+                {{/if}}
             </div>
         </div>
     </div>

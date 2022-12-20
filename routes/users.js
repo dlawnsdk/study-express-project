@@ -19,12 +19,10 @@ router.post('/login/try', function(req, res, next){
   ).then((result) => {
       if(result[0][0] !== undefined){
           userIdx = result[0][0].idx
-          console.log(userIdx)
           if(userIdx !== null){
               req.session.idx = result[0][0].idx,
               req.session.uid = result[0][0].id,
               req.session.name = result[0][0].name
-              console.log(req.session)
               res.redirect('/')
           }else{
             res.send("아이디 또는 비밀번호가 잘못 되었습니다.")
