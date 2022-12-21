@@ -9,10 +9,10 @@ router.get('/', function(req, res, next) {
   loginInfo.set("uid", req.session.uid)
   loginInfo.set("name", req.session.name)
   console.log("현재 로그인 유저 ===  " + loginInfo.get("name"));
-  if(loginInfo === undefined){
+  if(loginInfo.get("name") === undefined){
     res.render('index');
   }else{
-    res.render('index', { loginInfo: loginInfo });
+    res.render('index', { loginInfo: loginInfo.get("uid") });
   }
 
 });
