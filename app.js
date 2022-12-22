@@ -21,7 +21,7 @@ const sessionOption = {
 var indexRouter = require('./routes/index');
 // 유저 관리
 var usersRouter = require('./routes/users');
-// 자유세기판
+// 자유게기판
 var boardRouter = require('./routes/board');
 
 var app = express();

@@ -9,6 +9,9 @@ router.get('/board', function(req, res, next) {
     connection.query(
         "SELECT IDX, TITLE, CONTENTS FROM BOARD"
     ).then((result) => {
+        res.json({
+            message: "Hello"
+        })
         res.render('board/list', { list: result[0] })
     })
 });
