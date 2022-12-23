@@ -3,10 +3,14 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
 var session = require('express-session')
 var memoryStore = require('memorystore')(session)
+const redis = require('redis')
+const client = redis.createClient(6379, "localhost");
 
+
+
+// 세션 설정
 const sessionOption = {
   secret: 'asljkdh1@#231ads',
   resave: false,
