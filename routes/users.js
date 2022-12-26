@@ -25,7 +25,9 @@ router.post('/login/try', function(req, res, next){
               req.session.name = result[0][0].name
               res.redirect('/')
           }else{
-            res.send("아이디 또는 비밀번호가 잘못 되었습니다.")
+            var loginFail = new Map(); 
+            loginFail.set("Alert", "로그인 실패")
+            res.send(result, loginFail)
           }
       }
   })
