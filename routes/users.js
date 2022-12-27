@@ -17,20 +17,19 @@ router.post('/login/try', function(req, res, next){
   connection.query(
       "SELECT idx, id, name from user WHERE id = ? and password = ?", [id, password]
   ).then((result) => {
-      if(result[0][0] !== undefined){
-          userIdx = result[0][0].idx
-          if(userIdx !== null){
+      // 로그인 성공
+        if(result[0][0] !== undefined){
+              userIdx = result[0][0].idx
               req.session.idx = result[0][0].idx,
               req.session.uid = result[0][0].id,
               req.session.name = result[0][0].name
               res.redirect('/')
-          }else{
-            var loginFail = new Map(); 
-            loginFail.set("Alert", "로그인 실패")
-            res.send(result, loginFail)
           }
-      }
-  })
+        // 로그인 실패
+        else{
+            res.send("<script>alert('로그인에 실패 했습니다.'); location.href = '/login' </script>")
+          }
+      })
 })
 
 module.exports = router;
