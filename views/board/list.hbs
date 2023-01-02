@@ -5,6 +5,14 @@
 </script>
 <div style="display:flex; justify-content: center">
     <div style="width:85%">
+        <nav class="navbar navbar-light">
+            <div class="container-fluid">
+                <form class="d-flex w-100" action="/board">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searchText">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
         <div style="float:right; margin-top:30px">
             <button onClick="edit()" type="button" class="btn btn-success">글 등록</button>
         </div>

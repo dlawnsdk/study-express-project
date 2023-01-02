@@ -6,18 +6,32 @@ const client = redis.createClient(6379, "localhost");
 
 // app.get으로 요청하는 경우 URL 적시 <-> app.use인 경우 / 만 적시
 router.get('/board', function(req, res, next) {
+    var searchText = req.param('searchText')
     client.hget("REDIS", "list", function(err, data) {
         // REDIS에 담겨있는 데이터 JSON 타입으로 변환
         obj = JSON.parse(data);
-        
+
         // REDIS 데이터가 없는 경우 리스트 조회
-        if(obj === null){
-            connection.query(
-                "SELECT IDX, TITLE, CONTENTS FROM BOARD"
-            ).then((result) => {
-                client.hset('REDIS', "list", JSON.stringify(result[0]) );
-                res.render('board/list', { list: result[0] })
-            })
+        // 검색 텍스트가 있는 경우 리스트 조회
+        if(obj === null || searchText !== null){
+            // 검색 텍스트가 ''이거나 undefined인 경우 전체 조회
+            if(searchText === "" || searchText === undefined){
+                connection.query(
+                    "SELECT IDX, TITLE, CONTENTS FROM BOARD"
+                ).then((result) => {
+                    client.hset('REDIS', "list", JSON.stringify(result[0]) );
+                    res.render('board/list', { list: result[0] })
+                })
+            }
+            // 검색 텍스트가 있는 경우
+            else{
+                connection.query(
+                    "SELECT IDX, TITLE, CONTENTS FROM BOARD WHERE TITLE LIKE ?", searchText
+                ).then((result) => {
+                    client.hset('REDIS', "list", JSON.stringify(result[0]) );
+                    res.render('board/list', { list: result[0] })
+                })
+            }
         }else{
             console.log("=========== REDIS 실행 =============")
             res.render('board/list', { list: obj })
