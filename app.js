@@ -50,6 +50,7 @@ app.post('/login/try', usersRouter);
 app.get('/board', boardRouter);
 app.get('/board/edit', boardRouter);
 app.post('/board/save', boardRouter);
+app.get('/board/view', boardRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
