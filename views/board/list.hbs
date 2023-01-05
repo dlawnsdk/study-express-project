@@ -29,7 +29,7 @@
             <tbody class="table-group-divider">
                 {{#each list}}
                     <tr>
-                        <th scope="row">{{ IDX }}</th>
+                        <th scope="row">{{ count @index }}</th>
                         <td onclick="view({{ IDX }})">{{ TITLE }}</td>
                     </tr>
                 {{/each}}

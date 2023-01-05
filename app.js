@@ -7,8 +7,7 @@ var session = require('express-session')
 var memoryStore = require('memorystore')(session)
 const redis = require('redis')
 const client = redis.createClient(6379, "localhost");
-
-
+const hbs = require('hbs')
 
 // 세션 설정
 const sessionOption = {
@@ -32,7 +31,13 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+// view engine을 hbs로 세팅
 app.set('view engine', 'hbs');
+// handlebars 사용할 때 inc 키워드를 붙이면 실행되는 함수
+hbs.registerHelper("count", function(value, options)
+{
+  return parseInt(value) + 1;
+});
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -51,6 +56,7 @@ app.get('/board', boardRouter);
 app.get('/board/edit', boardRouter);
 app.post('/board/save', boardRouter);
 app.get('/board/view', boardRouter);
+app.get('/board/remove', boardRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

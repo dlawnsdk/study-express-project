@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-const connection = require('../lib/dataBase')
+const con = require('../lib/dataBase')
 const redis = require('redis')
 const client = redis.createClient(6379, "localhost");
 
-// app.get으로 요청하는 경우 URL 적시 <-> app.use인 경우 / 만 적시
+// 리스트
 router.get('/board', function(req, res, next) {
     var searchText = req.param('searchText')
     console.log("검색값", searchText)
@@ -14,8 +14,8 @@ router.get('/board', function(req, res, next) {
         // REDIS 데이터가 없는 경우 리스트 조회
         // 검색 텍스트가 있는 경우 리스트 조회
         if(obj === null && searchText === undefined){
-            connection.query(
-                "SELECT IDX, TITLE, CONTENTS FROM BOARD"
+            con.query(
+                "SELECT IDX, TITLE, CONTENTS FROM BOARD WHERE USEABLE = 'Y'"
             ).then((result) => {
                 // REDIS 세팅
                 client.hset('REDIS', "list", JSON.stringify(result[0]) );
@@ -23,8 +23,8 @@ router.get('/board', function(req, res, next) {
             })
         }
         else if(searchText !== undefined && searchText !== ""){
-            connection.query(
-                "SELECT IDX, TITLE FROM BOARD WHERE TITLE LIKE ?", '%' + searchText + '%'
+            con.query(
+                "SELECT IDX, TITLE FROM BOARD WHERE USEABLE = 'Y' AND TITLE LIKE ?", '%' + searchText + '%'
             ).then((result) => {
                 res.render('board/list', { list: result[0] })
             })
@@ -36,27 +36,40 @@ router.get('/board', function(req, res, next) {
     })
 });
 
+// 뷰
 router.get('/board/view', function(req, res, next) {
     const idx = req.param('idx')
     console.log("조회 게시물 번호", idx)
-    connection.query(
-        "SELECT IDX, TITLE, CONTENTS FROM BOARD WHERE IDX = ?", idx
+    con.query(
+        "SELECT IDX, TITLE, CONTENTS, DATE, UPLOADER FROM BOARD WHERE IDX = ?", idx
     ).then((result) => {
         console.log(result[0][0])
         res.render('board/view', { view: result[0][0] })
     })
 })
 
+// 글 등록
 router.get('/board/edit', function(req, res, next) {
-    res.render('board/edit')
+    if(req.session.uid === undefined){
+        res.send("<script>alert('로그인 해주세요'); location.href='/board'</script>")
+    }else{
+        res.render('board/edit')
+    }
+
 });
 
+// 글 저장
 router.post('/board/save', function(req, res, next) {
+    let now = new Date();
+    console.log(req.session.uid)
     var board = {
         title: req.body.title,
-        contents: req.body.contents
+        contents: req.body.contents,
+        date: now,
+        uploader: req.session.uid,
+        USEABLE: 'Y'
     }
-    connection.query(
+    con.query(
         //"INSERT INTO BOARD(IDX, TITLE, CONTENTS) VALUES ( ?, ?, ?)", [3, req.body.title, req.body.contents]
         "INSERT INTO BOARD SET ?", board
     ).then((result) => {
@@ -64,6 +77,20 @@ router.post('/board/save', function(req, res, next) {
         client.hdel("REDIS","list");
         res.redirect('/board')
     })
+});
+
+// 글 삭제
+router.get('/board/remove', function(req, res, next) {
+    var idx = req.param('idx')
+
+    con.query(
+        'UPDATE BOARD SET USEABLE = "N" WHERE IDX = ?', idx
+    ).then((result) => {
+        client.hdel("REDIS","list");
+        res.send("<script>alert('삭제 되었습니다.'); location.href = '/board'</script>")
+    })
+
+
 });
 
 module.exports = router;
