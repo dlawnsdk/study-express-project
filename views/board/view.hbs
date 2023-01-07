@@ -1,0 +1,46 @@
+<script>
+    var remove = (idx) =>{
+        let result = confirm("삭제 하시겠습니까?")
+        if(result === true){
+            location.href = '/board/remove?idx=' + idx
+        }
+    }
+</script>
+
+{{#if view}}
+<main class="mt-5 pt-5">
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Board</h1>
+        <div class="card mb-4">
+            <div class="card-body">
+                <form>
+                    <div class="mb-3 mt-3">
+                        <label for="bno" class="form-label">bno</label> <input type="text" class="form-control" id="bno" name="bno" value="{{ view.IDX }}" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="title" class="form-label">title</label> <input type="text" class="form-control" id="title" name="title" value="{{ view.TITLE }}" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="content" class="form-label">content</label>
+                        <textarea class="form-control" id="content" name="content" disabled>{{ view.CONTENTS }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="regDate" class="form-label">regDate</label> <input
+                            type="text" class="form-control" id="regDate" name="regDate"
+                            value="{{ view.DATE }}" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="writer" class="form-label">writer</label> <input
+                            type="text" class="form-control" id="writer" name="writer"
+                            value="{{ view.UPLOADER }}" disabled>
+                    </div>
+                    <a href="list" class="btn btn-outline-secondary">list</a> <a
+                        href="modify?bno=${board.bno}" class="btn btn-outline-warning">modify</a>
+                    <a class="btn btn-outline-danger"
+                       onclick="remove({{ view.IDX }})">remove</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{{/if}}

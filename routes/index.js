@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+const util = require('../lib/middleware/util')
 /* GET home page. */
 router.get('/', function(req, res, next) {
   
@@ -11,18 +11,10 @@ router.get('/', function(req, res, next) {
   if(agent.toLowerCase().match(/edg/)){
     console.log("Edge로 접속 시도")
   }
-  
-  const loginInfo = new Map()
-  loginInfo.set("idx", req.session.idx)
-  loginInfo.set("uid", req.session.uid)
-  loginInfo.set("name", req.session.name)
-  console.log("현재 로그인 유저 ===  " + loginInfo.get("name"));
-  if(loginInfo.get("name") === undefined){
-    res.render('index');
-  }else{
-    res.render('index', { loginInfo: loginInfo.get("uid") });
-  }
+  util.objtLog(req.session.account, "현재 로그인한 유저 정보 == ")
+  res.render('index', {'account': req.session.account});
 
 });
 
 module.exports = router;
+

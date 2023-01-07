@@ -19,11 +19,8 @@ router.post('/login/try', function(req, res, next){
   ).then((result) => {
       // 로그인 성공
         if(result[0][0] !== undefined){
-              userIdx = result[0][0].idx
-              req.session.idx = result[0][0].idx,
-              req.session.uid = result[0][0].id,
-              req.session.name = result[0][0].name
-              res.redirect('/')
+            req.session.account = result[0][0]
+            res.redirect('/')
           }
         // 로그인 실패
         else{

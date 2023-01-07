@@ -51,8 +51,8 @@ $( document ).ready(function() {
             </form>
 
             <div class="text-end">
-                {{#if loginInfo}}
-                    {{loginInfo}}님 반갑습니다 :)
+                {{#if account}}
+                    {{ account.name }}님 반갑습니다 :)
                 {{else}}
                     <button onclick="login()" type="button" class="btn btn-outline-light me-2">Login</button>
                     <button type="button" class="btn btn-warning">Sign-up</button>
