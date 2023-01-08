@@ -8,6 +8,18 @@ var memoryStore = require('memorystore')(session)
 const redis = require('redis')
 const client = redis.createClient(6379, "localhost");
 const hbs = require('hbs')
+const app = express();
+
+// Web Socket
+const socket = require('socket.io');
+const http = require('http');
+const server = http.createServer(app);
+const io = socket(server);
+
+io.on('connection', function(socket){
+  console.log("연결 되었습니다.")
+})
+
 
 // 세션 설정
 const sessionOption = {
@@ -26,8 +38,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 // 자유게기판
 var boardRouter = require('./routes/board');
-
-var app = express();
+//채팅
+var chatRouter = require('./routes/chat');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -57,6 +69,8 @@ app.get('/board/edit', boardRouter);
 app.post('/board/save', boardRouter);
 app.get('/board/view', boardRouter);
 app.get('/board/remove', boardRouter)
+// 채팅
+app.get('/chat', chatRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
