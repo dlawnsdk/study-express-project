@@ -11,13 +11,19 @@ const hbs = require('hbs')
 const app = express();
 
 // Web Socket
-const socket = require('socket.io');
-const http = require('http');
-const server = http.createServer(app);
-const io = socket(server);
+app.io = require('socket.io')();
 
-io.on('connection', function(socket){
+app.io.on('connection', function(socket){
   console.log("연결 되었습니다.")
+
+  socket.on('disconnect', () => {
+    console.log('연결 해제 되었습니다.')
+  })
+
+  socket.on('chat-msg-1', (msg) => {
+    app.io.emit('chat-msg-2', msg);
+  });
+
 })
 
 

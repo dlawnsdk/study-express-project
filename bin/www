@@ -21,6 +21,8 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
+// socketIO에 express 서버 붙여주기
+app.io.attach(server)
 /**
  * Listen on provided port, on all network interfaces.
  */

@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cf669ef4-2c6f-4ddf-bbb5-0b124fd6436d" name="Changes" comment="AS IS DAO 생성, uilt.js 생성, TO BE handlebars에서 세션값을 어떻게 가져오는지 확인 필요">
+    <list default="true" id="cf669ef4-2c6f-4ddf-bbb5-0b124fd6436d" name="Changes" comment="socketIO 라이브러리 이용하여 실시간 채팅 구현중 -&gt; 채팅 메뉴 눌렀을 때 socket 연결 로그가 안찍힘">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/www" beforeDir="false" afterPath="$PROJECT_DIR$/bin/www" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/chat/chat.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/chat/chat.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/layout.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/layout.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -121,7 +121,8 @@
       <workItem from="1673010712670" duration="3240000" />
       <workItem from="1673055672482" duration="27355000" />
       <workItem from="1673150402018" duration="18801000" />
-      <workItem from="1673180130373" duration="3226000" />
+      <workItem from="1673180130373" duration="3348000" />
+      <workItem from="1673259991197" duration="9457000" />
     </task>
     <task id="LOCAL-00001" summary="DAO 만드는 중">
       <created>1670937044502</created>
@@ -235,7 +236,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673097906994</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="socketIO 라이브러리 이용하여 실시간 채팅 구현중 -&gt; 채팅 메뉴 눌렀을 때 socket 연결 로그가 안찍힘">
+      <created>1673183470792</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1673183470792</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -267,6 +275,7 @@
     <MESSAGE value="AS IS&#10;글 리스트 쿼리 수정 및 글 보기&#10;TO BE&#10;글 작성자 정보 추가" />
     <MESSAGE value="AS IS 글 삭제 구현 TO BE 글 등록자만 삭제할 수 있도록 개발" />
     <MESSAGE value="AS IS DAO 생성, uilt.js 생성, TO BE handlebars에서 세션값을 어떻게 가져오는지 확인 필요" />
-    <option name="LAST_COMMIT_MESSAGE" value="AS IS DAO 생성, uilt.js 생성, TO BE handlebars에서 세션값을 어떻게 가져오는지 확인 필요" />
+    <MESSAGE value="socketIO 라이브러리 이용하여 실시간 채팅 구현중 -&gt; 채팅 메뉴 눌렀을 때 socket 연결 로그가 안찍힘" />
+    <option name="LAST_COMMIT_MESSAGE" value="socketIO 라이브러리 이용하여 실시간 채팅 구현중 -&gt; 채팅 메뉴 눌렀을 때 socket 연결 로그가 안찍힘" />
   </component>
 </project>
