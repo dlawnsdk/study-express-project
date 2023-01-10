@@ -20,10 +20,11 @@ app.io.on('connection', function(socket){
     console.log('연결 해제 되었습니다.')
   })
 
+  // view에서 request한 메시지를 받는다.
   socket.on('chat-msg-1', (msg) => {
+    // 해당 메시지를 다시 view로 response 한다.
     app.io.emit('chat-msg-2', msg);
   });
-
 })
 
 

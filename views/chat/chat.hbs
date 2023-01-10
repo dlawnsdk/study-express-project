@@ -1,15 +1,104 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.js" integrity="sha512-YeeA/Qxn5hYdkukScTCNNOhTrv1C2RubAGButJ1rmgQwZf/HdRaCGl+JAVkqsqaNRaYNHdheiuKKuPf9mDcqKg==" crossOrigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<style>
+* {
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+}
 
-<div>
-    <form>
-        <input type="text" id="msgInput">
-    </form>
+a {
+text-decoration: none;
+}
+
+.wrap {
+padding: 40px 0;
+background-color: #A8C0D6;
+}
+
+.wrap .chat {
+display: flex;
+align-items: flex-start;
+padding: 20px;
+}
+
+.wrap .chat .icon {
+position: relative;
+overflow: hidden;
+width: 50px;
+height: 50px;
+border-radius: 50%;
+background-color: #eee;
+}
+
+.wrap .chat .icon i {
+position: absolute;
+top: 10px;
+left: 50%;
+font-size: 2.5rem;
+color: #aaa;
+transform: translateX(-50%);
+}
+
+.wrap .chat .textbox {
+position: relative;
+display: inline-block;
+max-width: calc(100% - 70px);
+padding: 10px;
+margin-top: 7px;
+font-size: 13px;
+border-radius: 10px;
+}
+
+.wrap .chat .textbox::before {
+position: absolute;
+display: block;
+top: 0;
+font-size: 1.5rem;
+}
+
+.wrap .ch1 .textbox {
+margin-left: 20px;
+background-color: #ddd;
+}
+
+.wrap .ch1 .textbox::before {
+left: -15px;
+content: "◀";
+color: #ddd;
+}
+
+.wrap .ch2 {
+flex-direction: row-reverse;
+}
+
+.wrap .ch2 .textbox {
+margin-right: 20px;
+background-color: #F9EB54;
+}
+
+.wrap .ch2 .textbox::before {
+right: -15px;
+content: "▶";
+color: #F9EB54;
+}
+</style>
+<div class="wrap" id="message">
+    <!-- 상대방 디자인 -->
+<!--    <div class="chat ch1">
+        <div class="icon"><i class="fa-solid fa-user"></i></div>
+        <div class="textbox">안녕하세요. 반갑습니다.</div>
+    </div>-->
+    <!-- 본인 -->
+    <!--<div class="chat ch2">
+        <div class="icon"><i class="fa-solid fa-user"></i></div>
+        <div class="textbox">안녕하세요. 친절한효자손입니다. 그동안 잘 지내셨어요?</div>
+    </div>-->
 </div>
 <div>
-    <ul id="message">
-
-    </ul>
+    <form>
+        <input type="text" id="msgInput" style="width: 100%">
+    </form>
 </div>
 
 <script>
@@ -18,14 +107,17 @@
 
         $('form').submit(() => {
             let msg = {messege:$('#msgInput').val()}
+
+            // 메시지 request
             socket.emit('chat-msg-1', msg);
             $('#msgInput').val('');
             return false;
         });
 
+        // 메시지 response 하여 뷰에 그린다.
         socket.on('chat-msg-2', (msg) => {
             console.log(msg.messege)
-            $('#message').append('<li>' + msg.messege + '</li>');
+            $('#message').append(`<div class="chat ch2"> <div class="icon"><i class="fa-solid fa-user"></i></div> <div class="textbox">${ msg.messege }</div></div>`);
         });
     });
 </script>
