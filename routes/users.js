@@ -20,7 +20,10 @@ router.post('/login/try', function(req, res, next){
       // 로그인 성공
         if(result[0][0] !== undefined){
             req.session.account = result[0][0]
-            res.redirect('/')
+            return req.session.save(() => {
+                res.redirect('/')
+            })
+
           }
         // 로그인 실패
         else{

@@ -5,14 +5,13 @@ const util = require('../lib/middleware/util')
 router.get('/', function(req, res, next) {
   
   var agent = req.header('User-Agent')
-  console.log("현재 로그인한 계정 정보 ===  " + req.session.idx, req.session.uid, req.session.name);
   console.log("로그인 유저 브라우저 정보 === %s", agent)
   
   if(agent.toLowerCase().match(/edg/)){
     console.log("Edge로 접속 시도")
   }
   util.objtLog(req.session.account, "현재 로그인한 유저 정보 == ")
-  res.render('index', {'account': req.session.account});
+  res.render('index');
 
 });
 

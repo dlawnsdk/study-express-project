@@ -43,7 +43,8 @@ exports.boardView = (req, res, next) => {
 }
 
 exports.boardEdit = (req, res, next) => {
-    if(req.session.uid === undefined){
+    console.log(req.session.account)
+    if(req.session.account === undefined){
         res.send("<script>alert('로그인 해주세요'); location.href='/board'</script>")
     }else{
         res.render('board/edit')

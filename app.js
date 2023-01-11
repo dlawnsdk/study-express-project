@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session')
+/*const fileStore = require('session-file-store')(session)*/
 var memoryStore = require('memorystore')(session)
 const redis = require('redis')
 const client = redis.createClient(6379, "localhost");
@@ -29,15 +30,13 @@ app.io.on('connection', function(socket){
 
 
 // 세션 설정
-const sessionOption = {
-  secret: 'asljkdh1@#231ads',
-  resave: false,
-  saveUninitialized: true,
-  store: new memoryStore({ checkPeriod: 36000 }),
-  cookie:{
-    maxAge: 36000
-  },
-};
+app.use(
+    session({
+        secret :'asdjha!@#@#$dd',
+        resave:false,
+        saveUninitialized:true
+    })
+)
 
 // 컨트롤러(routs) 변수에 담기
 var indexRouter = require('./routes/index');
@@ -63,7 +62,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session(sessionOption))
 
 // URL 요청 받으면 컨트롤러 요청
 app.use('/', indexRouter);
