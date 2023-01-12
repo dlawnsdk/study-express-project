@@ -14,20 +14,20 @@ exports.boardList = (req, res, next) => {
                 "SELECT IDX, TITLE, CONTENTS FROM BOARD WHERE USEABLE = 'Y'"
             ).then((result) => {
                 // REDIS 세팅
-                client.hset('REDIS', "list", JSON.stringify(result[0]) );
-                res.render('board/list', { list: result[0] })
+                client.hset('REDIS', "list", JSON.stringify(result[0]));
+                res.render('board/list', { list: result[0], session: req.session.account })
             })
         }
         else if(searchText !== undefined && searchText !== ""){
             con.query(
                 "SELECT IDX, TITLE FROM BOARD WHERE USEABLE = 'Y' AND TITLE LIKE ?", '%' + searchText + '%'
             ).then((result) => {
-                res.render('board/list', { list: result[0] })
+                res.render('board/list', { list: result[0], session: req.session.account })
             })
         }
         else{
             console.log("=========== REDIS 실행 =============")
-            res.render('board/list', { list: list })
+            res.render('board/list', { list: list, session: req.session.account })
         }
     })
 }
@@ -38,27 +38,27 @@ exports.boardView = (req, res, next) => {
         "SELECT IDX, TITLE, CONTENTS, DATE, UPLOADER FROM BOARD WHERE IDX = ?", idx
     ).then((result) => {
         console.log(result[0][0])
-        res.render('board/view', { view: result[0][0] })
+        res.render('board/view', { view: result[0][0], session: req.session.account })
     })
 }
 
-exports.boardEdit = (req, res, next) => {
-    console.log(req.session.account)
-    if(req.session.account === undefined){
-        res.send("<script>alert('로그인 해주세요'); location.href='/board'</script>")
-    }else{
-        res.render('board/edit')
-    }
+exports.boardModify = (req, res, next) => {
+    const idx = req.param('idx')
+    con.query(
+        "SELECT IDX, TITLE, CONTENTS, DATE, UPLOADER FROM BOARD WHERE IDX = ?", idx
+    ).then((result) => {
+        console.log("?????? adasd")
+        res.render('board/edit', { session: req.session.account, idx: req.param('idx') })
+    })
 }
 
 exports.boardSave = (req, res, next) => {
     let now = new Date();
-    console.log(req.session.uid)
     var board = {
         title: req.body.title,
         contents: req.body.contents,
         date: now,
-        uploader: req.session.uid,
+        uploader: req.session.account.id,
         USEABLE: 'Y'
     }
     con.query(
@@ -67,7 +67,7 @@ exports.boardSave = (req, res, next) => {
     ).then((result) => {
         // 새로운 데이터가 생기는 경우 기존의 REDIS 데이터 삭제
         client.hdel("REDIS","list");
-        res.redirect('/board')
+        res.redirect('/board?session=' + req.session.account)
     })
 }
 

@@ -22,7 +22,8 @@ app.io.on('connection', function(socket){
   })
 
   // view에서 request한 메시지를 받는다.
-  socket.on('chat-msg-1', (msg) => {
+  socket.on('chat-msg-1', (msg, sender) => {
+      console.log(JSON.stringify(memoryStore))
     // 해당 메시지를 다시 view로 response 한다.
     app.io.emit('chat-msg-2', msg);
   });

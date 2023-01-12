@@ -4,10 +4,6 @@ $( document ).ready(function() {
     console.log("사이트 서버 시작")
 });
 
-    function about(){
-        location.href = "/about"
-    }
-
     function chat() {
         location.href = "/chat"
     }
@@ -43,8 +39,6 @@ $( document ).ready(function() {
                 <li onclick="home()"><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
                 <li onclick="chat()"><a href="#" class="nav-link px-2 text-white">채팅</a></li>
                 <li onclick="board()"><a href="#" class="nav-link px-2 text-white">자유게시판</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-                <li onclick="about()"><a href="#" class="nav-link px-2 text-white">About</a></li>
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -52,8 +46,13 @@ $( document ).ready(function() {
             </form>
 
             <div class="text-end">
-                <button onclick="login()" type="button" class="btn btn-outline-light me-2">Login</button>
-                <button type="button" class="btn btn-warning">Sign-up</button>
+                {{#if session}}
+                    {{session.id}}님 반갑습니다 :)
+                    <button type="button" class="btn btn-warning">로그아웃</button>
+                {{else}}
+                    <button onclick="login()" type="button" class="btn btn-outline-light me-2">로그인</button>
+                    <button type="button" class="btn btn-warning">회원가입</button>
+                {{/if}}
             </div>
         </div>
     </div>

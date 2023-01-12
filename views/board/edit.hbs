@@ -1,15 +1,20 @@
 <div style="display:flex; justify-content: center">
     <div style="width:80%">
         <form action="/board/save" method="POST">
+            <input type="hidden" name="idx" value="{{ edit.IDX }}">
             <input type="text" name="title" class="form-control mt-4 mb-2"
-                   placeholder="제목을 입력해주세요.">
+                   placeholder="제목을 입력해주세요." value="{{ edit.TITLE }}">
             <div class="form-group">
                 <textarea class="form-control" rows="10" name="contents"
-                          placeholder="내용을 입력해주세요">
+                          placeholder="내용을 입력해주세요">{{ edit.CONTENTS }}
                 </textarea>
             </div>
             <br />
-            <button type="submit" class="btn btn-secondary mb-3" style="float:right">제출하기</button>
+            {{#if edit}}
+                <button type="submit" class="btn btn-secondary mb-3" style="float:right">수정</button>
+                {{else}}
+                <button type="submit" class="btn btn-secondary mb-3" style="float:right">제출</button>
+            {{/if}}
         </form>
     </div>
 </div>

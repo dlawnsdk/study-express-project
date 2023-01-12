@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
     console.log("Edge로 접속 시도")
   }
   util.objtLog(req.session.account, "현재 로그인한 유저 정보 == ")
-  res.render('index');
+  res.render('index', { session: req.session.account });
 
 });
 

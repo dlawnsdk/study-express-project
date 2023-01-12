@@ -1,9 +1,13 @@
 <script>
-    var remove = (idx) =>{
+    let remove = (idx) =>{
         let result = confirm("삭제 하시겠습니까?")
         if(result === true){
             location.href = '/board/remove?idx=' + idx
         }
+    }
+    let modify = (idx) => {
+        alert("Test")
+        location.href = '/board/modify?idx=' + idx
     }
 </script>
 
@@ -34,10 +38,9 @@
                             type="text" class="form-control" id="writer" name="writer"
                             value="{{ view.UPLOADER }}" disabled>
                     </div>
-                    <a href="list" class="btn btn-outline-secondary">list</a> <a
-                        href="modify?bno=${board.bno}" class="btn btn-outline-warning">modify</a>
-                    <a class="btn btn-outline-danger"
-                       onclick="remove({{ view.IDX }})">remove</a>
+                    <a class="btn btn-outline-secondary">list</a>
+                    <a class="btn btn-outline-warning" onclick="modify({{ view.IDX }})">modify</a>
+                    <a class="btn btn-outline-danger" onclick="remove({{ view.IDX }})">remove</a>
                 </form>
             </div>
         </div>
