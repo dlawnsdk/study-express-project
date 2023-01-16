@@ -69,12 +69,16 @@ app.use('/', indexRouter);
 // 유저
 app.get('/login', usersRouter);
 app.post('/login/try', usersRouter);
+
+app.get('/logout', usersRouter)
 // 게시판
 app.get('/board', boardRouter);
 app.get('/board/edit', boardRouter);
+app.get('/board/modify', boardRouter);
+app.post('/board/modifySave', boardRouter);
 app.post('/board/save', boardRouter);
 app.get('/board/view', boardRouter);
-app.get('/board/remove', boardRouter)
+app.get('/board/remove', boardRouter);
 // 채팅
 app.get('/chat', chatRouter);
 

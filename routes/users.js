@@ -32,4 +32,9 @@ router.post('/login/try', function(req, res, next){
       })
 })
 
+router.get('/logout', function(req, res, next){
+    req.session.destroy()
+    res.send("<script> alert('로그아웃 되었습니다.'); location.href = '/'</script>")
+})
+
 module.exports = router;

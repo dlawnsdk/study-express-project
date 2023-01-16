@@ -34,6 +34,11 @@ router.get('/board/modify', function(req, res, next) {
     }
 });
 
+// 글 수정 저장
+router.post('/board/modifySave', function(req, res, next) {
+        dao.boardModifySave(req, res, next)
+});
+
 // 글 저장
 router.post('/board/save', function(req, res, next) {
     dao.boardSave(req, res, next)

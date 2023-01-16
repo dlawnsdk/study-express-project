@@ -18,6 +18,10 @@ $( document ).ready(function() {
     var login = () => {
         location.href = "login"
     }
+    var logout = () => {
+        location.href = "logout"
+    }
+
 </script>
 <!DOCTYPE html>
 <html>
@@ -48,7 +52,7 @@ $( document ).ready(function() {
             <div class="text-end">
                 {{#if session}}
                     {{session.id}}님 반갑습니다 :)
-                    <button type="button" class="btn btn-warning">로그아웃</button>
+                    <button type="button" onclick="logout()" class="btn btn-warning">로그아웃</button>
                 {{else}}
                     <button onclick="login()" type="button" class="btn btn-outline-light me-2">로그인</button>
                     <button type="button" class="btn btn-warning">회원가입</button>

@@ -47,8 +47,26 @@ exports.boardModify = (req, res, next) => {
     con.query(
         "SELECT IDX, TITLE, CONTENTS, DATE, UPLOADER FROM BOARD WHERE IDX = ?", idx
     ).then((result) => {
-        console.log("?????? adasd")
-        res.render('board/edit', { session: req.session.account, idx: req.param('idx') })
+        console.log(result[0][0])
+        res.render('board/edit', { session: req.session.account, idx: req.param('idx'), modify: result[0][0] })
+    })
+}
+
+exports.boardModifySave = (req, res, next) => {
+    const idx = req.param('idx')
+    let now = new Date();
+    var board = {
+        title: req.body.title,
+        contents: req.body.contents,
+        date: now,
+        uploader: req.session.account.id,
+        USEABLE: 'Y',
+    }
+    con.query(
+        `UPDATE BOARD SET ? WHERE IDX = ${idx}`, board,
+    ).then((result) => {
+        client.hdel("REDIS","list");
+        res.redirect('/board/view?idx=' + req.param('idx'))
     })
 }
 

@@ -1,19 +1,37 @@
+<script>
+    let modify = (idx) => {
+        let result = confirm("수정하시겠습니까?")
+        if(result === true){
+            $("#smTag").attr("action", "/board/modifySave").submit()
+            alert("수정 되었습니다.")
+        }
+    }
+
+    let save = (idx) => {
+        let result = confirm("저장하시겠습니까?")
+        if(result === true){
+            //location.href = '/board/save?idx=' + idx
+            $("#smTag").attr("action", "/board/save").submit()
+            alert("저장 되었습니다.")
+        }
+    }
+</script>
+
 <div style="display:flex; justify-content: center">
     <div style="width:80%">
-        <form action="/board/save" method="POST">
-            <input type="hidden" name="idx" value="{{ edit.IDX }}">
+        <form action="" method="POST" id="smTag">
+            <input type="hidden" name="idx" value="{{ modify.IDX }}">
             <input type="text" name="title" class="form-control mt-4 mb-2"
-                   placeholder="제목을 입력해주세요." value="{{ edit.TITLE }}">
+                   placeholder="제목을 입력해주세요." value="{{ modify.TITLE }}">
             <div class="form-group">
-                <textarea class="form-control" rows="10" name="contents"
-                          placeholder="내용을 입력해주세요">{{ edit.CONTENTS }}
+                <textarea class="form-control" rows="10" name="contents" placeholder="내용을 입력해주세요">{{ modify.CONTENTS }}
                 </textarea>
             </div>
             <br />
-            {{#if edit}}
-                <button type="submit" class="btn btn-secondary mb-3" style="float:right">수정</button>
+            {{#if modify}}
+                <button class="btn btn-secondary mb-3" onclick="modify({{ modify.IDX }})" style="float:right">수정</button>
                 {{else}}
-                <button type="submit" class="btn btn-secondary mb-3" style="float:right">제출</button>
+                <button class="btn btn-secondary mb-3" onClick="save({{ modify.IDX }})" style="float:right">제출</button>
             {{/if}}
         </form>
     </div>
