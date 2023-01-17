@@ -69,8 +69,9 @@ app.use('/', indexRouter);
 // 유저
 app.get('/login', usersRouter);
 app.post('/login/try', usersRouter);
-
 app.get('/logout', usersRouter)
+app.get('/join', usersRouter)
+app.post('/join/save', usersRouter)
 // 게시판
 app.get('/board', boardRouter);
 app.get('/board/edit', boardRouter);

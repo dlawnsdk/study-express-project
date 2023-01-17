@@ -22,6 +22,10 @@ $( document ).ready(function() {
         location.href = "logout"
     }
 
+    var join = () => {
+        location.href = "join"
+    }
+
 </script>
 <!DOCTYPE html>
 <html>
@@ -55,7 +59,7 @@ $( document ).ready(function() {
                     <button type="button" onclick="logout()" class="btn btn-warning">로그아웃</button>
                 {{else}}
                     <button onclick="login()" type="button" class="btn btn-outline-light me-2">로그인</button>
-                    <button type="button" class="btn btn-warning">회원가입</button>
+                    <button type="button" onclick="join()" class="btn btn-warning">회원가입</button>
                 {{/if}}
             </div>
         </div>
