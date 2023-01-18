@@ -1,4 +1,4 @@
 ## 사용 스택
-# Express
-# redis
-# MySQL 
+1. Express
+2. redis
+3. MySQL 
