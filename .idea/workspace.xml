@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cf669ef4-2c6f-4ddf-bbb5-0b124fd6436d" name="Changes" comment="AS IS 게시글 업데이트. 로그아웃 기능 구현&#10;TO BE 회원가입 기능">
+    <list default="true" id="cf669ef4-2c6f-4ddf-bbb5-0b124fd6436d" name="Changes" comment="AS IS 비밀번호 암호화&#10;TO BE 로그인시 비밀번호 체크">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/middleware/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/middleware/util.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/layout.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/layout.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +124,8 @@
       <workItem from="1673437299372" duration="6097000" />
       <workItem from="1673518089591" duration="12237000" />
       <workItem from="1673871005077" duration="5069000" />
-      <workItem from="1673950597589" duration="12049000" />
+      <workItem from="1673950597589" duration="12886000" />
+      <workItem from="1674042985236" duration="3352000" />
     </task>
     <task id="LOCAL-00001" summary="DAO 만드는 중">
       <created>1670937044502</created>
@@ -283,7 +281,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673876110149</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="AS IS 비밀번호 암호화&#10;TO BE 로그인시 비밀번호 체크">
+      <created>1673963854174</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1673963854174</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -321,6 +326,7 @@
     <MESSAGE value="1. session 저장성공 적용 성공, 그러나 해당 세션을 handlebars에서 어떻게 사용하는지 알아봐야됨, 정보가 없음&#10;2. 채팅 디자인 적용중" />
     <MESSAGE value="게시판 업데이트 기능 구현하기, 회원가입 할 때 암호화 추가하기" />
     <MESSAGE value="AS IS 게시글 업데이트. 로그아웃 기능 구현&#10;TO BE 회원가입 기능" />
-    <option name="LAST_COMMIT_MESSAGE" value="AS IS 게시글 업데이트. 로그아웃 기능 구현&#10;TO BE 회원가입 기능" />
+    <MESSAGE value="AS IS 비밀번호 암호화&#10;TO BE 로그인시 비밀번호 체크" />
+    <option name="LAST_COMMIT_MESSAGE" value="AS IS 비밀번호 암호화&#10;TO BE 로그인시 비밀번호 체크" />
   </component>
 </project>

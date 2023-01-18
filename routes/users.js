@@ -17,15 +17,21 @@ router.post('/login/try', function(req, res, next){
   var id =  req.body.id
   var password = req.body.password
   connection.query(
-      "SELECT idx, id, name from user WHERE id = ? and password = ?", [id, password]
+      "SELECT idx, id, name, password, salt from user WHERE id = ?", id
   ).then((result) => {
       // 로그인 성공
         if(result[0][0] !== undefined){
-            req.session.account = result[0][0]
-            return req.session.save(() => {
-                res.redirect('/')
-            })
-
+            console.log("1", result[0][0])
+            let salt = result[0][0].salt
+            const tryPw = util.createHashedPassword(password, salt)
+            if(tryPw === result[0][0].password){
+                req.session.account = result[0][0]
+                return req.session.save(() => {
+                    res.redirect('/')
+                })
+            }else{
+                res.send("<script>alert('로그인에 실패 했습니다.'); location.href = '/login' </script>")
+            }
           }
         // 로그인 실패
         else{
@@ -50,9 +56,18 @@ router.post('/join/save', function(req, res, next){
     var id =  req.body.id
     var name = req.body.name
     connection.query(
-        "INSERT INTO USER ( ID, PASSWORD, NAME ) VALUES (?, ?, ?)", [id, hasedPw, name]
+        "SELECT COUNT(idx) as NUM from user WHERE id = ?", id
     ).then((result) => {
-        res.redirect('/')
+        console.log(result[0][0])
+        if(result[0][0].NUM === 0){
+            connection.query(
+                "INSERT INTO USER ( ID, PASSWORD, NAME, SALT ) VALUES (?, ?, ?, ?)", [id, hasedPw, name, salt]
+            ).then((result) => {
+                res.redirect('/')
+            })
+        }else{
+            res.send("<script>alert('존재하는 아이디 입니다.'); location.href='/join'</script>")
+        }
     })
 })
 
