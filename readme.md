@@ -1,4 +1,5 @@
-## 사용 스택
-1. Express
-2. redis
-3. MySQL 
+study-express-project
++ front-end: handlbars(템플릿)
++ back-end: javascript
+> framework: node.js, express
++ DB: MySQL, redis 
